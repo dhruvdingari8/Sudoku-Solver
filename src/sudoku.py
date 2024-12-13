@@ -112,13 +112,14 @@ class Sudoku:
         start_row, start_col = self._subgrid(row, col)
 
         # Iterate through the subgrid.
-        for i in range(start_row, start_row + 3):
-            for j in range(start_col, start_col + 3):
+        for i in range(start_row*3, start_row*3 + 3):
+            for j in range(start_col*3, start_col*3 + 3):
                 # Check if the number is in the subgrid.
                 if self.board[i][j] == num:
                     # Return True if the number is in the subgrid.
                     print("subgrid contains number" + str(num))
                     return True
+
 
         print("subgrid does not contain number" + str(num))
         # Return False if the number is not in the subgrid.

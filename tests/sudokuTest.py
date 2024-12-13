@@ -66,5 +66,12 @@ class MyTestCase(unittest.TestCase):
         self.s1.write(0, 0, None)
         self.assertTrue(self.s1.is_empty(0, 0))
 
+    def test_does_subgrid_contain(self):
+        # Tests the _does_subgrid_contain method of Sudoku
+        self.assertFalse(self.s1._does_subgrid_contain(0, 0, 1))
+        self.assertFalse(self.s1._does_subgrid_contain(0, 0, 2))
+        self.assertTrue(self.s1._does_subgrid_contain(0, 0, 7))
+        self.assertFalse(self.s1._does_subgrid_contain(0, 3, 7))
+
 if __name__ == '__main__':
     unittest.main()
