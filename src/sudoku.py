@@ -122,12 +122,16 @@ class Sudoku:
             # Raise an error if the cell is a starting value
             raise ValueError('Cannot change starting value')
         else:
-            # Raise an error if the number is not between 1 and 9
-            if num not in range(1, 10):
-                raise ValueError('Number must be between 1 and 9')
-            # Raise an error if the number is already in the same row, column, or 3x3 subgrid
-            if not self._is_valid(row, col, num):
-                raise ValueError('Number already in row, column, or subgrid')
+            if (num == None):
+                self.board[row][col] = None
+                return
+            else:
+                # Raise an error if the number is not between 1 and 9
+                if num not in range(1, 10):
+                    raise ValueError('Number must be between 1 and 9')
+                # Raise an error if the number is already in the same row, column, or 3x3 subgrid
+                if not self._is_valid(row, col, num):
+                    raise ValueError('Number already in row, column, or subgrid')
 
             # Write the number to the cell
             self.board[row][col] = num

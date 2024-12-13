@@ -61,5 +61,10 @@ class MyTestCase(unittest.TestCase):
         self.assertTrue(self.s1.is_empty(0, 1))
         self.assertFalse(self.s1.is_empty(0, 5))
 
+    def test_write_None(self):
+        # Tests the write method of Sudoku with None
+        self.s1.write(0, 0, None)
+        self.assertTrue(self.s1.is_empty(0, 0))
+
 if __name__ == '__main__':
     unittest.main()
