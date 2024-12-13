@@ -23,7 +23,6 @@ def main():
     # Solve the Sudoku board
     ss = Sudoku_Solver(sudoku)
     ss.solve()
-
     print(ss)
 
 

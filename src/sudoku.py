@@ -77,8 +77,10 @@ class Sudoku:
             # Check if the number is in the row.
             if self.board[row][i] == num:
                 # Return True if the number is in the row.
+                print("row contains number" + str(num))
                 return True
 
+        print("row does not contain number" + str(num))
         # Return False if the number is not in the row.
         return False
 
@@ -93,8 +95,10 @@ class Sudoku:
             # Check if the number is in the column.
             if self.board[i][col] == num:
                 # Return True if the number is in the column.
+                print("col contains number" + str(num))
                 return True
 
+        print("col does not contain number" + str(num))
         # Return False if the number is not in the column.
         return False
 
@@ -113,8 +117,10 @@ class Sudoku:
                 # Check if the number is in the subgrid.
                 if self.board[i][j] == num:
                     # Return True if the number is in the subgrid.
+                    print("subgrid contains number" + str(num))
                     return True
 
+        print("subgrid does not contain number" + str(num))
         # Return False if the number is not in the subgrid.
         return False
 
