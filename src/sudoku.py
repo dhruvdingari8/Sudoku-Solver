@@ -104,6 +104,22 @@ class Sudoku:
         :return: Boolean
         """
 
+        # Get the row and column of the top left cell of the subgrid.
+        start_row, start_col = self._subgrid(row, col)
+
+        # Iterate through the subgrid.
+        for i in range(start_row, start_row + 3):
+            for j in range(start_col, start_col + 3):
+                # Check if the number is in the subgrid.
+                if self.board[i][j] == num:
+                    # Return True if the number is in the subgrid.
+                    return True
+
+        # Return False if the number is not in the subgrid.
+        return False
+
+
+
 
     def write(self, row, col, num):
         """
