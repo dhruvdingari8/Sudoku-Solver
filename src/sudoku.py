@@ -181,11 +181,34 @@ class Sudoku:
         # Return the row and column of the top left cell of the subgrid.
         return int(start_row/3), int(start_col/3)
 
-
-
+    def num_at(self, row, col):
+        """
+        Returns the number at the cell at the given row and column
+        """
+        return self.board[row][col]
 
     def __str__(self):
         """
         Returns a string representation of the Sudoku board with empty cells represented by '.'
         """
-        return '\n'.join([' '.join([str(cell) if cell is not None else '.' for cell in row]) for row in self.board]) + '\n'
+        result = ""
+
+        # Iterate through the rows of the board
+        # for every 3 rows, add a horizontal line
+        # for every 3 cols, add a vertical line
+        # replace None with '.'
+        # no recursion
+
+        for i in range(9):
+            if i % 3 == 0 and i != 0:
+                result += "------+-------+------\n"
+            for j in range(9):
+                if j % 3 == 0 and j != 0:
+                    result += "| "
+                if self.board[i][j] is None:
+                    result += ". "
+                else:
+                    result += str(self.num_at(i, j)) + " "
+            result += "\n"
+
+        return result
