@@ -21,25 +21,9 @@ class MyTestCase(unittest.TestCase):
 
     def test_subgrid(self):
         # Tests the _subgrid method of Sudoku
-        self.assertEqual(self.s1._subgrid(0, 0), (0, 0))
-        self.assertEqual(self.s1._subgrid(0, 1), (0, 0))
-        self.assertEqual(self.s1._subgrid(0, 3), (0, 1))
-        self.assertEqual(self.s1._subgrid(0, 4), (0, 1))
-        self.assertEqual(self.s1._subgrid(0, 7), (0, 2))
-        self.assertEqual(self.s1._subgrid(0, 8), (0, 2))
-        self.assertEqual(self.s1._subgrid(1, 2), (0, 0))
-        self.assertEqual(self.s1._subgrid(1, 5), (0, 1))
-        self.assertEqual(self.s1._subgrid(1, 8), (0, 2))
-        self.assertEqual(self.s1._subgrid(2, 0), (0, 0))
-        self.assertEqual(self.s1._subgrid(2, 4), (0, 1))
-        self.assertEqual(self.s1._subgrid(2, 8), (0, 2))
-        self.assertEqual(self.s1._subgrid(3, 0), (1, 0))
-        self.assertEqual(self.s1._subgrid(3, 4), (1, 1))
-        self.assertEqual(self.s1._subgrid(3, 8), (1, 2))
-        self.assertEqual(self.s1._subgrid(4, 0), (1, 0))
-        self.assertEqual(self.s1._subgrid(4, 4), (1, 1))
-        self.assertEqual(self.s1._subgrid(6, 8), (2, 2))
-        self.assertEqual(self.s1._subgrid(8, 8), (2, 2))
+        for i in range(9):
+            for j in range(9):
+                self.assertEqual(self.s1._subgrid(i, j), (i // 3, j // 3))
 
     def test_in_starting_board(self):
         # Tests the _in_starting_board method of Sudoku
