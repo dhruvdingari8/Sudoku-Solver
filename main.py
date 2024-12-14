@@ -8,8 +8,8 @@ def main():
 
     while True:
         boardstr = input("Enter the board as a string of 81 numbers, 0 for empty cells: ")
-        if not all(c in '0123456789' for c in boardstr):
-            print("Invalid input. Please enter only numbers.")
+        if not all(c in '0123456789 ' for c in boardstr):
+            print("Invalid input. Please enter only numbers or spaces.")
         elif len(boardstr) != 81:
             print("Invalid input. Please enter 81 numbers.")
         else:
@@ -21,7 +21,7 @@ def main():
     for i in range(9):
         for j in range(9):
             board[i][j] = int(boardstr[i * 9 + j])
-            if board[i][j] == 0:
+            if board[i][j] == 0 or board[i][j] == " ":
                 board[i][j] = None
 
     s = Sudoku(board)
