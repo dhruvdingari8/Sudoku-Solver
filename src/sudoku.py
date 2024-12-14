@@ -5,21 +5,23 @@ class Sudoku:
     Class Invariants:
         - board is a 9x9 2D square list
         - board is never null
-        - board can only be set when creating a new Sudoku object
+        - board can only be set when creating a new Sudoku object, but can be edited only through the write method
         - an empty cell is represented by None
         - a valid Sudoku board has no duplicate numbers in each row, column, and 3x3 subgrid
         - numbers in the starting board cannot be changed
+        - starting_board is the same as board when the Sudoku object is created. However, starting_board cannot be
+        edited after initialization
 
     Has attributes:
         - board: a 2D list representing the Sudoku board
+
         - starting_board: a 2D list representing the starting Sudoku board (cannot be changed)
 
     Has methods:
         - __str__: returns a string representation of the Sudoku board
-        - is_empty(row, col): returns True if the cell at the given row and column is empty, False otherwise
-        - _is_valid: returns True if the Sudoku board is valid, False otherwise
         - write(row, col): writes a number to the cell at the given row and column
-        - num_at(row, col): returns the number at the cell at the given row and column
+        - is_empty(row, col): returns True if the cell at the given row and column is empty, False otherwise
+        - is_valid: returns True if the Sudoku board is valid, False otherwise
     """
 
     @property
@@ -43,7 +45,7 @@ class Sudoku:
         """
         return self.board[row][col] is None
 
-    def _is_valid(self, row, col, num):
+    def is_valid(self, row, col, num):
         """
         Returns true if the Sudoku board is valid, False otherwise
         Valid is defined by each row and column containing no duplicate numbers
@@ -77,10 +79,10 @@ class Sudoku:
             # Check if the number is in the row.
             if self.board[row][i] == num:
                 # Return True if the number is in the row.
-                print("row contains number" + str(num))
+                # print("row contains number" + str(num))
                 return True
 
-        print("row does not contain number" + str(num))
+        # print("row does not contain number" + str(num))
         # Return False if the number is not in the row.
         return False
 
@@ -95,10 +97,10 @@ class Sudoku:
             # Check if the number is in the column.
             if self.board[i][col] == num:
                 # Return True if the number is in the column.
-                print("col contains number" + str(num))
+                # print("col contains number" + str(num))
                 return True
 
-        print("col does not contain number" + str(num))
+        # print("col does not contain number" + str(num))
         # Return False if the number is not in the column.
         return False
 
@@ -117,11 +119,11 @@ class Sudoku:
                 # Check if the number is in the subgrid.
                 if self.board[i][j] == num:
                     # Return True if the number is in the subgrid.
-                    print("subgrid contains number" + str(num))
+                    # print("subgrid contains number" + str(num))
                     return True
 
 
-        print("subgrid does not contain number" + str(num))
+        # print("subgrid does not contain number" + str(num))
         # Return False if the number is not in the subgrid.
         return False
 
@@ -153,7 +155,7 @@ class Sudoku:
                 if num not in range(1, 10):
                     raise ValueError('Number must be between 1 and 9')
                 # Raise an error if the number is already in the same row, column, or 3x3 subgrid
-                if not self._is_valid(row, col, num):
+                if not self.is_valid(row, col, num):
                     raise ValueError('Number already in row, column, or subgrid')
 
             # Write the number to the cell
@@ -181,12 +183,6 @@ class Sudoku:
         # Return the row and column of the top left cell of the subgrid.
         return int(start_row/3), int(start_col/3)
 
-    def num_at(self, row, col):
-        """
-        Returns the number at the cell at the given row and column
-        """
-        return self.board[row][col]
-
     def __str__(self):
         """
         Returns a string representation of the Sudoku board with empty cells represented by '.'
@@ -208,7 +204,7 @@ class Sudoku:
                 if self.board[i][j] is None:
                     result += ". "
                 else:
-                    result += str(self.num_at(i, j)) + " "
+                    result += str(self.board[i][j]) + " "
             result += "\n"
 
         return result

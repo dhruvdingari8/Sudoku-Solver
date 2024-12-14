@@ -4,8 +4,17 @@ from src.sudoku_solver import Sudoku_Solver
 
 # main function
 def main():
-    # ask the user for the board numbers, where 0 represents an empty cell
-    boardstr = input("Enter the board numbers (0 for empty cells): ")
+
+
+    while True:
+        boardstr = input("Enter the board as a string of 81 numbers, 0 for empty cells: ")
+        if not all(c in '0123456789' for c in boardstr):
+            print("Invalid input. Please enter only numbers.")
+        elif len(boardstr) != 81:
+            print("Invalid input. Please enter 81 numbers.")
+        else:
+            break
+
     # initialize a 2d 9x9 list
     board = [[None for _ in range(9)] for _ in range(9)]
     # fill the board with the given numbers, converting 0 to None
@@ -15,13 +24,16 @@ def main():
             if board[i][j] == 0:
                 board[i][j] = None
 
-
-    print(board)
-
     s = Sudoku(board)
-    solver = Sudoku_Solver(s)
-    solver.solve()
+    print("The following board was entered:")
     print(s)
+
+    print("Solving\n.\n.\n.\n\n\n")
+    solver = Sudoku_Solver(s)
+    if solver.solve() is True:
+        print(s)
+    else:
+        print("No solution found.")
 
 
 
