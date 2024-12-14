@@ -1,32 +1,30 @@
 from src.sudoku import Sudoku
 from src.sudoku_solver import Sudoku_Solver
 
+
 # main function
 def main():
-    # Generate a Sudoku board as a 9x9 square 2D list, where empty cells are represented by None
-    board = [
-        [None, None, None, None, None, 5, None, None, 4],
-        [None, None, 7, None, None, None, 8, None, None],
-        [None, 8, None, None, None, 1, None, 3, None],
-        [None, None, None, 9, None, None, None, 7, None],
-        [None, None, None, None, None, None, None, None, None],
-        [None, 3, None, None, None, 6, None, None, None],
-        [None, 5, None, 3, None, None, None, 6, None],
-        [None, None, 4, None, None, None, 5, None, None],
-        [1, None, None, 8, None, None, None, None, None]
-    ]
+    # ask the user for the board numbers, where 0 represents an empty cell
+    boardstr = input("Enter the board numbers (0 for empty cells): ")
+    # initialize a 2d 9x9 list
+    board = [[None for _ in range(9)] for _ in range(9)]
+    # fill the board with the given numbers, converting 0 to None
+    for i in range(9):
+        for j in range(9):
+            board[i][j] = int(boardstr[i * 9 + j])
+            if board[i][j] == 0:
+                board[i][j] = None
 
-    # Create a Sudoku object
-    sudoku = Sudoku(board)
-    print(sudoku)
 
-    # Solve the Sudoku board
-    ss = Sudoku_Solver(sudoku)
-    ss.solve()
-    print(ss)
+    print(board)
 
+    s = Sudoku(board)
+    solver = Sudoku_Solver(s)
+    solver.solve()
+    print(s)
 
 
 
 if __name__ == '__main__':
     main()
+

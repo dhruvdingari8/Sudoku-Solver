@@ -212,3 +212,19 @@ class Sudoku:
             result += "\n"
 
         return result
+
+    def single_line_form(self):
+        """
+        Returns a string representation of the Sudoku board in a single line, with empty cells represented by spaces
+        """
+
+        result = ""
+
+        for i in range(9):
+            for j in range(9):
+                if self.board[i][j] is None:
+                    result += " "
+                else:
+                    result += str(self.num_at(i, j))
+
+        return result
